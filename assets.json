@@ -1,0 +1,16 @@
+{
+  "assets.js": [
+    "./node_modules/angular/angular.js",
+    "./node_modules/oclazyload/dist/ocLazyLoad.js"
+  ],
+  "assets.min.js": [
+    "./node_modules/angular/angular.min.js",
+    "./node_modules/oclazyload/dist/ocLazyLoad.min.js"
+  ],
+  "assets.css": [
+    "./node_modules/angular/angular-csp.css"
+  ],
+  "assets.min.css": [
+    "./node_modules/angular/angular-csp.css"
+  ]
+}
