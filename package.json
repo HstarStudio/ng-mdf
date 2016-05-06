@@ -33,6 +33,8 @@
   },
   "dependencies": {
     "angular": "^1.5.5",
+    "font-awesome": "^4.6.1",
+    "loaders.css": "^0.1.2",
     "oclazyload": "^1.0.9"
   }
 }

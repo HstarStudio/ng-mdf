@@ -8,9 +8,14 @@
     "./node_modules/oclazyload/dist/ocLazyLoad.min.js"
   ],
   "assets.css": [
-    "./node_modules/angular/angular-csp.css"
+    "./node_modules/angular/angular-csp.css",
+    "./node_modules/font-awesome/css/font-awesome.css"
   ],
   "assets.min.css": [
-    "./node_modules/angular/angular-csp.css"
+    "./node_modules/angular/angular-csp.css",
+    "./node_modules/font-awesome/css/font-awesome.min.css"
+  ],
+  "assets.fonts": [
+    "./node_modules/font-awesome/fonts/*.*"
   ]
 }
