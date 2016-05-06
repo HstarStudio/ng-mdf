@@ -83,7 +83,9 @@ gulp.task('watch', (done) => {
   ], gulp.series('core', 'copySrc', 'reload'));
   done();
 
-//  gulp.watch([], gulp.series('assets', 'reload'));
+ gulp.watch([
+   'assets/**/*'
+ ], gulp.series('assets', 'reload'));
 
 });
 
