@@ -35,7 +35,7 @@ gulp.task('assets', gulp.parallel('assets.js', 'assets.css', 'assets.fonts'));
 
 gulp.task('core.copyFiles', () => {
   return gulp.src([
-    './src/core/*.js'
+    './src/core/**/*'
   ])
     .pipe(gulp.dest('./dist/core/'));
 });

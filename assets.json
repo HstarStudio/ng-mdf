@@ -4,6 +4,7 @@
     "./node_modules/bootstrap/dist/js/bootstrap.js",
     "./assets/plugins/startadmin/js/*.js",
     "./node_modules/angular/angular.js",
+    "./node_modules/angular-route/angular-route.js",
     "./node_modules/oclazyload/dist/ocLazyLoad.js"
   ],
   "assets.min.js": [
@@ -11,6 +12,7 @@
     "./node_modules/bootstrap/dist/js/bootstrap.min.js",
     "./assets/plugins/startadmin/js/*.js",
     "./node_modules/angular/angular.min.js",
+    "./node_modules/angular-route/angular-route.min.js",
     "./node_modules/oclazyload/dist/ocLazyLoad.min.js"
   ],
   "assets.css": [
