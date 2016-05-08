@@ -530,6 +530,7 @@ function getParam(a) {
     , d = c.exec(window.location.href);
   return null == d ? "" : d[1]
 }
+
 $.intervalArr = [];
 var calc_navbar_height = function () {
   var a = null;
