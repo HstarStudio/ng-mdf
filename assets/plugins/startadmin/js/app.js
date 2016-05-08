@@ -724,10 +724,10 @@ initApp.addDeviceType(),
   initApp.menuPos(),
   jQuery(document).ready(function () {
     initApp.SmartActions();
-    setTimeout(function(){
-       initApp.leftNav();
+    setTimeout(function () {
+      initApp.leftNav();
     }, 1000);
-   
+
     initApp.domReadyMisc();
   }),
   function (a, b, c) {
@@ -871,38 +871,56 @@ if ($.fn.extend({
         (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(a)
     }
 }
-$.navAsAjax && ($("nav").length && checkURL(),
-  $(document).on("click", 'nav a[href!="#"]', function (a) {
-    a.preventDefault();
-    var b = $(a.currentTarget);
-    b.parent().hasClass("active") || b.attr("target") || ($.root_.hasClass("mobile-view-activated") ? ($.root_.removeClass("hidden-menu"),
-      $("html").removeClass("hidden-menu-mobile-lock"),
-      window.setTimeout(function () {
-        window.location.search ? window.location.href = window.location.href.replace(window.location.search, "").replace(window.location.hash, "") + "#" + b.attr("href") : window.location.hash = b.attr("href")
-      }, 150)) : window.location.search ? window.location.href = window.location.href.replace(window.location.search, "").replace(window.location.hash, "") + "#" + b.attr("href") : window.location.hash = b.attr("href"))
-  }),
+if ($.navAsAjax) {
+  checkURL();
+  $(document).on("click", 'nav a[href!="#"]', function (evt) {
+    evt.preventDefault();
+    var $a = $(this);
+    if (!$a.parent().hasClass('active') && !$a.attr('target')) {
+      if ($.root_.hasClass('mobile-view-activated')) {
+        $.root_.removeClass("hidden-menu");
+        $("html").removeClass("hidden-menu-mobile-lock");
+        window.setTimeout(function () {
+          // if (window.location.search) {
+          //   window.location.href = window.location.href.replace(window.location.search, "").replace(window.location.hash, "") + "#" + $a.attr("href");
+          // } else {
+          //   window.location.hash = $a.attr("href")
+          // }
+        }, 150)
+      } else {
+        // if (window.location.search) {
+        //   window.location.href = window.location.href.replace(window.location.search, "").replace(window.location.hash, "") + "#" + $a.attr("href")
+        // } else {
+        //   window.location.hash = $a.attr("href")
+        // }
+      }
+    }
+  });
   $(document).on("click", 'nav a[target="_blank"]', function (a) {
     a.preventDefault();
     var b = $(a.currentTarget);
     window.open(b.attr("href"))
-  }),
+  });
   $(document).on("click", 'nav a[target="_top"]', function (a) {
     a.preventDefault();
     var b = $(a.currentTarget);
     window.location = b.attr("href")
-  }),
+  });
   $(document).on("click", 'nav a[href="#"]', function (a) {
     a.preventDefault()
-  }),
-  $(window).on("hashchange", function () {
-    checkURL()
-  })),
-  $("body").on("click", function (a) {
-    $('[rel="popover"], [data-rel="popover"]').each(function () {
-      $(this).is(a.target) || 0 !== $(this).has(a.target).length || 0 !== $(".popover").has(a.target).length || $(this).popover("hide")
-    })
-  }),
-  $("body").on("hidden.bs.modal", ".modal", function () {
-    $(this).removeData("bs.modal")
   });
+  $(window).on("hashchange", function () {
+    checkURL();
+  });
+}
+
+$("body").on("click", function (a) {
+  $('[rel="popover"], [data-rel="popover"]').each(function () {
+    $(this).is(a.target) || 0 !== $(this).has(a.target).length || 0 !== $(".popover").has(a.target).length || $(this).popover("hide")
+  })
+});
+
+$("body").on("hidden.bs.modal", ".modal", function () {
+  $(this).removeData("bs.modal")
+});
 

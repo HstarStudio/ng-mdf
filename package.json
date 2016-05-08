@@ -25,6 +25,7 @@
   "homepage": "https://github.com/HstarStudio/ng-modular#readme",
   "devDependencies": {
     "browser-sync": "^2.12.5",
+    "connect-history-api-fallback": "^1.2.0",
     "del": "^2.2.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-concat": "^2.6.0",

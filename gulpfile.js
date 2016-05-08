@@ -6,6 +6,7 @@ let concat = require('gulp-concat');
 let uglify = require('gulp-uglify');
 let notify = require('gulp-notify');
 let browserSync = require('browser-sync').create();
+let history = require('connect-history-api-fallback');
 
 let assets = require('./assets.json');
 
@@ -66,7 +67,8 @@ gulp.task('serve', (done) => {
       baseDir: './dist/'
     },
     port: 7410,
-    ghostMode: false
+    ghostMode: false,
+    middleware: [history()]
   });
   done();
 });
