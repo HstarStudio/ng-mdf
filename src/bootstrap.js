@@ -9,10 +9,13 @@
   }]);
 
   app.config(['$routeProvider', ($routeProvider) => {
-    $routeProvider.otherwise('/404');
     $routeProvider.when('/dashboard', {
       template: 'test'
     });
+    $routeProvider.when('/404', {
+      template: '<h1>404</h1>'
+    });
+    $routeProvider.otherwise('/404');
   }]);
 
   angular.bootstrap(document, ['ng-modular-app']);

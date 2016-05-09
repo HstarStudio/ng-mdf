@@ -15,6 +15,8 @@ let cssConcatOpt = { newLine: '\n\n' };
 
 gulp.task('clean', (done) => del(['./dist/'], done));
 
+/**************************处理Assets*****************************/
+
 gulp.task('assets.js', () => {
   return gulp.src(assets['assets.js'])
     .pipe(concat('assets.js', jsConcatOpt))
@@ -33,6 +35,18 @@ gulp.task('assets.fonts', () => {
 });
 
 gulp.task('assets', gulp.parallel('assets.js', 'assets.css', 'assets.fonts'));
+
+/**************************处理Common*****************************/
+gulp.task('common.js', () => {
+  return gulp.src([
+    './src/common/common.js',
+    './src/services/*.js'
+  ]).pipe(concat('common.js', jsConcatOpt))
+    .pipe(gulp.dest('./dist/assets/js/'));
+});
+gulp.task('common', gulp.parallel('common.js'));
+
+/**************************处理Core*****************************/
 
 gulp.task('core.copyFiles', () => {
   return gulp.src([
@@ -85,10 +99,10 @@ gulp.task('watch', (done) => {
   ], gulp.series('core', 'copySrc', 'reload'));
   done();
 
- gulp.watch([
-   'assets/**/*'
- ], gulp.series('assets', 'reload'));
+  gulp.watch([
+    'assets/**/*'
+  ], gulp.series('assets', 'reload'));
 
 });
 
-gulp.task('default', gulp.series('clean', 'assets', 'core', 'copySrc', 'serve', 'watch'));
+gulp.task('default', gulp.series('clean', gulp.parallel('assets', 'common', 'core', 'copySrc'), gulp.parallel('serve', 'watch')));
