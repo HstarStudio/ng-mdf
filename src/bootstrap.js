@@ -13,7 +13,7 @@
       template: 'test'
     });
     $routeProvider.when('/404', {
-      template: '<h1>404</h1>'
+      template: '<h1>404 Not Found</h1>'
     });
     $routeProvider.otherwise('/404');
   }]);
