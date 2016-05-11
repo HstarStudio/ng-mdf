@@ -387,27 +387,6 @@ function loadScript(a, b) {
       c.appendChild(d)
   }
 }
-function checkURL() {
-  var a = location.href.split("#").splice(1).join("#");
-  if (!a)
-    try {
-      var b = window.document.URL;
-      b && b.indexOf("#", 0) > 0 && b.indexOf("#", 0) < b.length + 1 && (a = b.substring(b.indexOf("#", 0) + 1))
-    } catch (c) { }
-  if (container = $("#content"),
-    a) {
-    $("nav li.active").removeClass("active"),
-      $('nav li:has(a[href="' + a + '"])').addClass("active");
-    var d = $('nav a[href="' + a + '"]').attr("title");
-    document.title = d || document.title,
-      debugState && root.console.log("Page title: %c " + document.title, debugStyle_green),
-      loadURL(a + location.search, container)
-  } else {
-    var e = $('nav > ul > li:first-child > a[href!="#"]');
-    window.location.hash = e.attr("href"),
-      e = null
-  }
-}
 function loadURL(a, b) {
   if (a === "undefined") {
     return;
@@ -872,7 +851,6 @@ if ($.fn.extend({
     }
 }
 if ($.navAsAjax) {
-  checkURL();
   $(document).on("click", 'nav a[href!="#"]', function (evt) {
     evt.preventDefault();
     var $a = $(this);
@@ -888,6 +866,7 @@ if ($.navAsAjax) {
           // }
         }, 150)
       } else {
+        window.location.href = $a.attr("href");
         // if (window.location.search) {
         //   window.location.href = window.location.href.replace(window.location.search, "").replace(window.location.hash, "") + "#" + $a.attr("href")
         // } else {
@@ -895,22 +874,6 @@ if ($.navAsAjax) {
         // }
       }
     }
-  });
-  $(document).on("click", 'nav a[target="_blank"]', function (a) {
-    a.preventDefault();
-    var b = $(a.currentTarget);
-    window.open(b.attr("href"))
-  });
-  $(document).on("click", 'nav a[target="_top"]', function (a) {
-    a.preventDefault();
-    var b = $(a.currentTarget);
-    window.location = b.attr("href")
-  });
-  $(document).on("click", 'nav a[href="#"]', function (a) {
-    a.preventDefault()
-  });
-  $(window).on("hashchange", function () {
-    checkURL();
   });
 }
 

@@ -48,10 +48,12 @@ gulp.task('common', gulp.parallel('common.js'));
 
 /**************************处理Core*****************************/
 
-gulp.task('core.copyFiles', () => {
+gulp.task('core.js', () => {
   return gulp.src([
-    './src/core/**/*'
+    './src/core/core.js',
+    './src/core/services/*.js'
   ])
+    .pipe(concat('core.js', jsConcatOpt))
     .pipe(gulp.dest('./dist/core/'));
 });
 
@@ -63,7 +65,16 @@ gulp.task('core.css', () => {
     .pipe(gulp.dest('./dist/core/'));
 });
 
-gulp.task('core', gulp.parallel('core.copyFiles', 'core.css'));
+gulp.task('core.copyFiles', () => {
+  return gulp.src([
+    './src/core/**/*.html'
+  ])
+    .pipe(gulp.dest('./dist/core/'));
+});
+
+gulp.task('core', gulp.parallel('core.copyFiles', 'core.js', 'core.css'));
+
+/**************************处理其他资源*****************************/
 
 gulp.task('copySrc', () => {
   return gulp.src([
@@ -73,6 +84,8 @@ gulp.task('copySrc', () => {
   ])
     .pipe(gulp.dest('./dist/'));
 });
+
+/**************************启动浏览器*****************************/
 
 gulp.task('serve', (done) => {
   browserSync.init({
