@@ -1,3 +1,6 @@
 .loading{
   display: none;
 }
+body:not(.menu-on-top).desktop-detected {
+    min-height: initial;
+}

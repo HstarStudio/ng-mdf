@@ -852,26 +852,13 @@ if ($.fn.extend({
 }
 if ($.navAsAjax) {
   $(document).on("click", 'nav a[href!="#"]', function (evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
     var $a = $(this);
     if (!$a.parent().hasClass('active') && !$a.attr('target')) {
       if ($.root_.hasClass('mobile-view-activated')) {
         $.root_.removeClass("hidden-menu");
         $("html").removeClass("hidden-menu-mobile-lock");
-        window.setTimeout(function () {
-          // if (window.location.search) {
-          //   window.location.href = window.location.href.replace(window.location.search, "").replace(window.location.hash, "") + "#" + $a.attr("href");
-          // } else {
-          //   window.location.hash = $a.attr("href")
-          // }
-        }, 150)
       } else {
-        window.location.href = $a.attr("href");
-        // if (window.location.search) {
-        //   window.location.href = window.location.href.replace(window.location.search, "").replace(window.location.hash, "") + "#" + $a.attr("href")
-        // } else {
-        //   window.location.hash = $a.attr("href")
-        // }
       }
     }
   });

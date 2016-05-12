@@ -85,6 +85,16 @@ gulp.task('copySrc', () => {
     .pipe(gulp.dest('./dist/'));
 });
 
+/**************************处理模块*****************************/
+
+
+gulp.task('modules', () => {
+  return gulp.src([
+    './src/modules/**/*'
+  ])
+    .pipe(gulp.dest('./dist/modules/'));
+});
+
 /**************************启动浏览器*****************************/
 
 gulp.task('serve', (done) => {
@@ -109,7 +119,7 @@ gulp.task('watch', (done) => {
   gulp.watch([
     'src/**/*',
     '!modules/**/*'
-  ], gulp.series('core', 'copySrc', 'reload'));
+  ], gulp.series('core', 'copySrc', 'modules', 'reload'));
   done();
 
   gulp.watch([
@@ -118,4 +128,4 @@ gulp.task('watch', (done) => {
 
 });
 
-gulp.task('default', gulp.series('clean', gulp.parallel('assets', 'common', 'core', 'copySrc'), gulp.parallel('serve', 'watch')));
+gulp.task('default', gulp.series('clean', gulp.parallel('assets', 'common', 'core', 'copySrc'), 'modules', gulp.parallel('serve', 'watch')));
